@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title>播放m3u8格式</title>
+	<link href="./utils/video-js.css" rel="stylesheet">
+	<script src="./utils/video.min.js"></script>
+	<script src="./utils/axios.min.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<!-- <div class="search-box">
+			<input id="video-url" /><button onclick="clickPlay()">播放</button>
+		</div> -->
+		<div class="video-box">
+			<video id="myVideo_MP4" class="video-js vjs-default-skin vjs-big-play-centered" autoplay controls preload="none"
+				data-setup='{}' poster="http://vjs.zencdn.net/v/oceans.png">
+				<source id="source_mp4" src="" type="video/mp4">
+			</video>
+			<video id="myVideo" class="video-js vjs-default-skin vjs-big-play-centered" autoplay controls preload="none"
+				data-setup='{}' poster="http://vjs.zencdn.net/v/oceans.png">
+				<source id="source" src="" type="application/x-mpegURL">
+			</video>
+			
+			<iframe id="outVideo" src="">
+			</iframe>
+		</div>
+	</div>
+
+	<style>
+		html,
+		body {
+			height: 100%;
+			overflow: hidden;
+			padding: 0px;
+			margin: 0px;
+		}
+
+		.search-box{
+			position: absolute;
+			z-index: 999;
+			top: 10px;
+			width: 90%
+		}
+
+		input{
+			border: 1px solid #ccc; 
+			padding: 7px 0px;
+			border-radius: 3px; /*css3属性IE不支持*/
+			padding-left:5px; 
+			width: 90%;
+		}
+
+		.search-box > button {
+			margin-left: 5px;
+			border: 1px solid #ccc; 
+			padding: 5px 10px;
+			border-radius: 3px; /*css3属性IE不支持*/
+		}
+
+		.video-js .vjs-tech {
+			position: relative !important;
+		}
+
+		#app {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+		}
+
+		.video-box {
+			width: 100%;
+			height: 100%;
+		}
+
+		#myVideo,#outVideo,#myVideo_MP4 {
+			width: 100%;
+			height: 100%;
+		}
+
+		.vjs-paused .vjs-big-play-button,
+		.vjs-paused.vjs-has-started .vjs-big-play-button {
+			display: block;
+		}
+
+		
+		.video-js .vjs-time-control {
+			display: block !important;
+		}
+		.video-js .vjs-remaining-time {
+			display: none !important;
+		}
+	</style>
+	<script>
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null)
+				return unescape(r[2]);
+			return null; // 返回参数值
+		}
+
+		var currentUrl = window.location.href;
+		var videoUrl = getUrlParam('videoUrl')
+		// videoUrl = "https://vip.lz-cdn.com/20220330/7447_d6b3b8b3/index.m3u8"
+		playVideo(videoUrl)
+
+		function playVideo(videoUrl){
+			if(videoUrl == null || videoUrl == "") {
+				document.getElementById("outVideo").parentNode.removeChild(document.getElementById("outVideo"));
+				document.getElementById("myVideo").parentNode.removeChild(document.getElementById("myVideo"));
+				document.getElementById("myVideo_MP4").parentNode.removeChild(document.getElementById("myVideo_MP4"));
+				return
+			}
+			if(/\.m3u8$/g.test(videoUrl)) {
+				document.getElementById("source").src = videoUrl
+				document.getElementById("outVideo").parentNode.removeChild(document.getElementById("outVideo"));
+				document.getElementById("myVideo_MP4").parentNode.removeChild(document.getElementById("myVideo_MP4"));
+			} else if(/\.mp4$/g.test(videoUrl)) {
+				document.getElementById("source_mp4").src = videoUrl
+				document.getElementById("outVideo").parentNode.removeChild(document.getElementById("outVideo"));
+				document.getElementById("myVideo").parentNode.removeChild(document.getElementById("myVideo"));
+			} else {
+				if(videoUrl) {
+					document.getElementById("outVideo").src = videoUrl
+				}
+				document.getElementById("myVideo").parentNode.removeChild(document.getElementById("myVideo"));
+				document.getElementById("myVideo_MP4").parentNode.removeChild(document.getElementById("myVideo_MP4"));
+			}
+		}
+
+
+		function clickPlay(){
+			var vDom = document.getElementById("video-url")
+			if(vDom) {
+				var videoUrl = vDom.value;
+				window.location.href = window.location.origin + window.location.pathname + "?videoUrl=" + videoUrl
+				// playVideo(videoUrl)
+			}
+		}
+
+		function refreshVideo(url) {
+			window.location.href = window.location.origin + window.location.pathname + "?videoUrl=" + url
+			// alert(url)
+			// window.location.reload();
+		}
+
+		function getProgress(){
+			var progressList = document.getElementsByClassName("vjs-progress-holder")
+			if(progressList[0]) {
+				var progressNode = progressList[0]
+				var progressInfo = progressNode.getAttribute("aria-valuetext")
+				var progressList = progressInfo.match(/\d+(:\d*)*/g)
+				console.log("当前 ",progressList[0])
+				console.log("一共 ",progressList[1])
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// document.getElementById("source").src = "https://play2.laoyacdn.com/20221013/zjyHZ7TV/index.m3u8"
+
+		//搜索
+		//https://www.kuaibozy.com/api.php/provide/vod/from/kbm3u8/at/json/?ac=list&wd=%E5%94%90%E6%9C%9D
+		//详情
+		//https://www.kuaibozy.com/api.php/provide/vod/from/kbm3u8/at/json/?ac=detail&ids=37688
+		let allWeb = ["https://www.kuaibozy.com/api.php/provide/vod/from/kbm3u8/at/json/",
+			"https://cj.lziapi.com/api.php/provide/vod/",
+			"https://www.39kan.com/api.php/provide/vod/at/json",
+			"https://api.tiankongapi.com/api.php/provide/vod/",
+			"https://api.ukuapi.com/api.php/provide/vod/",
+			"https://api.1080zyku.com/inc/apijson.php",
+			"https://api.tiankongapi.com/api.php/provide/vod/at/json/from/tkm3u8/",
+			"https://sdzyapi.com/api.php/provide/vod/"]
+
+	</script>
+</body>
+
+</html>
