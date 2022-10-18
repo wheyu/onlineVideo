@@ -169,46 +169,54 @@
         document.onkeydown = function(event) {
             var e = event || window.event || arguments.callee.caller.arguments[0];
             var vdom = document.querySelector('#myVideo_html5_api');
-            if (e && e.keyCode == 38) { // 上
-                var volume = vdom.volume
-                if (volume <= 0.9) {
-                    vdom.volume += 0.1
+            //console.log("===============  ", e.keyCode)
+            if (vdom) {
+                if (e && e.keyCode == 38) { // 上
+                    var volume = vdom.volume
+                    if (volume <= 0.9) {
+                        vdom.volume += 0.1
+                    }
+                }
+                if (e && e.keyCode == 40) { // 下
+                    var volume = vdom.volume
+                    if (volume >= 0.1) {
+                        vdom.volume -= 0.1
+                    }
+                }
+                if (e && e.keyCode == 37) { // 左
+                    vdom.currentTime -= 10
+                }
+                if (e && e.keyCode == 39) { // 右
+                    vdom.currentTime += 10
+                }
+                if (e && e.keyCode == 27) { // Esc
+                    // vdom.webkitCancelFullScreen()
+                }
+                if (e && e.keyCode == 32) { // 空格
+                    vdom.paused ? vdom.play() : vdom.pause()
+                }
+                if (e && e.keyCode == 13) { // 回车
+                    vdom.webkitRequestFullScreen() //requestFullScreen()
+                } //vdom.playbackRate
+                if (e && e.keyCode <= 90 && e.keyCode >= 65) { // z
+                    switch (vdom.playbackRate) {
+                        case 1:
+                            vdom.playbackRate = 1.25
+                            break;
+                        case 1.25:
+                            vdom.playbackRate = 1.5
+                            break;
+                        default:
+                            vdom.playbackRate = 1
+                            break;
+                    }
                 }
             }
-            if (e && e.keyCode == 40) { // 下
-                var volume = vdom.volume
-                if (volume >= 0.1) {
-                    vdom.volume -= 0.1
-                }
+
+            if (e && e.keyCode == 8) {
+                return true
             }
-            if (e && e.keyCode == 37) { // 左
-                vdom.currentTime -= 10
-            }
-            if (e && e.keyCode == 39) { // 右
-                vdom.currentTime += 10
-            }
-            if (e && e.keyCode == 27) { // Esc
-                // vdom.webkitCancelFullScreen()
-            }
-            if (e && e.keyCode == 32) { // 空格
-                vdom.paused ? vdom.play() : vdom.pause()
-            }
-            if (e && e.keyCode == 13) { // 回车
-                vdom.webkitRequestFullScreen() //requestFullScreen()
-            } //vdom.playbackRate
-            if (e && e.keyCode <= 90 && e.keyCode >= 65) { // z
-                switch (vdom.playbackRate) {
-                    case 1:
-                        vdom.playbackRate = 1.25
-                        break;
-                    case 1.25:
-                        vdom.playbackRate = 1.5
-                        break;
-                    default:
-                        vdom.playbackRate = 1
-                        break;
-                }
-            }
+
             return false
         };
 
