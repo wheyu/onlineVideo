@@ -175,28 +175,34 @@
                     var volume = vdom.volume
                     if (volume <= 0.9) {
                         vdom.volume += 0.1
+                        return false
                     }
                 }
                 if (e && e.keyCode == 40) { // 下
                     var volume = vdom.volume
                     if (volume >= 0.1) {
                         vdom.volume -= 0.1
+                        return false
                     }
                 }
                 if (e && e.keyCode == 37) { // 左
                     vdom.currentTime -= 10
+                    return false
                 }
                 if (e && e.keyCode == 39) { // 右
                     vdom.currentTime += 10
+                    return false
                 }
                 if (e && e.keyCode == 27) { // Esc
                     // vdom.webkitCancelFullScreen()
                 }
                 if (e && e.keyCode == 32) { // 空格
                     vdom.paused ? vdom.play() : vdom.pause()
+                    return false
                 }
                 if (e && e.keyCode == 13) { // 回车
                     vdom.webkitRequestFullScreen() //requestFullScreen()
+                    return false
                 } //vdom.playbackRate
                 if (e && e.keyCode <= 90 && e.keyCode >= 65) { // z
                     switch (vdom.playbackRate) {
@@ -212,12 +218,8 @@
                     }
                 }
             }
+            return true
 
-            if (e && e.keyCode == 8) {
-                return true
-            }
-
-            return false
         };
 
 
