@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.staticfile.org/dplayer/1.25.1/DPlayer.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/hls.js/8.0.0-beta.3/hls.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/dplayer/1.25.0/DPlayer.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="dplayer-box">
+    <div id="dplayer"></div>
+  </div>
+  <div class="options-box">
+    <div id="why_play_btn">
+      <svg t="1666085730302" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        p-id="5349" width="32" height="32">
+        <path
+          d="M630.568421 498.526316l-194.021053-113.178948c-10.778947-8.084211-26.947368 2.694737-26.947368 16.168421v223.663158c0 13.473684 13.473684 21.557895 26.947368 16.168421l194.021053-113.178947c13.473684-8.084211 13.473684-24.252632 0-29.642105z"
+          fill="#10ABFF" opacity=".4" p-id="5350"></path>
+        <path
+          d="M935.073684 916.210526H88.926316c-29.642105 0-53.894737-24.252632-53.894737-56.589473V167.073684c0-32.336842 24.252632-59.284211 53.894737-59.28421h843.452631c29.642105 0 53.894737 24.252632 53.894737 56.589473v692.547369c2.694737 32.336842-21.557895 59.284211-51.2 59.28421zM88.926316 145.515789c-8.084211 0-16.168421 10.778947-16.168421 21.557895v692.547369c0 10.778947 8.084211 18.863158 16.168421 18.863158h843.452631c8.084211 0 16.168421-8.084211 16.168421-18.863158V167.073684c0-10.778947-8.084211-18.863158-16.168421-18.863158H88.926316z"
+          fill="#10ABFF" p-id="5351"></path>
+        <path
+          d="M245.221053 258.694737H175.157895c-10.778947 0-18.863158-8.084211-18.863158-18.863158s8.084211-18.863158 18.863158-18.863158h70.063158c10.778947 0 18.863158 8.084211 18.863158 18.863158s-8.084211 18.863158-18.863158 18.863158zM444.631579 258.694737h-70.063158c-10.778947 0-18.863158-8.084211-18.863158-18.863158s8.084211-18.863158 18.863158-18.863158h70.063158c10.778947 0 18.863158 8.084211 18.863158 18.863158s-8.084211 18.863158-18.863158 18.863158zM644.042105 258.694737h-70.063158c-10.778947 0-18.863158-8.084211-18.863158-18.863158s8.084211-18.863158 18.863158-18.863158h70.063158c10.778947 0 18.863158 8.084211 18.863158 18.863158s-8.084211 18.863158-18.863158 18.863158zM843.452632 258.694737h-70.063158c-10.778947 0-18.863158-8.084211-18.863158-18.863158s8.084211-18.863158 18.863158-18.863158h70.063158c10.778947 0 18.863158 8.084211 18.863157 18.863158s-8.084211 18.863158-18.863157 18.863158z"
+          fill="#10ABFF" p-id="5352"></path>
+        <path
+          d="M245.221053 803.031579H175.157895c-10.778947 0-18.863158-8.084211-18.863158-18.863158s8.084211-18.863158 18.863158-18.863158h70.063158c10.778947 0 18.863158 8.084211 18.863158 18.863158s-8.084211 18.863158-18.863158 18.863158zM444.631579 803.031579h-70.063158c-10.778947 0-18.863158-8.084211-18.863158-18.863158s8.084211-18.863158 18.863158-18.863158h70.063158c10.778947 0 18.863158 8.084211 18.863158 18.863158s-8.084211 18.863158-18.863158 18.863158zM644.042105 803.031579h-70.063158c-10.778947 0-18.863158-8.084211-18.863158-18.863158s8.084211-18.863158 18.863158-18.863158h70.063158c10.778947 0 18.863158 8.084211 18.863158 18.863158s-8.084211 18.863158-18.863158 18.863158zM843.452632 803.031579h-70.063158c-10.778947 0-18.863158-8.084211-18.863158-18.863158s8.084211-18.863158 18.863158-18.863158h70.063158c10.778947 0 18.863158 8.084211 18.863157 18.863158s-8.084211 18.863158-18.863157 18.863158z"
+          fill="#10ABFF" p-id="5353"></path>
+        <path
+          d="M428.463158 662.905263c-5.389474 0-13.473684-2.694737-18.863158-5.389474-10.778947-5.389474-18.863158-18.863158-18.863158-32.336842v-223.663158c0-13.473684 8.084211-24.252632 18.863158-32.336842 10.778947-5.389474 24.252632-5.389474 37.726316 0l194.021052 113.178948c10.778947 5.389474 18.863158 18.863158 18.863158 32.336842s-8.084211 24.252632-18.863158 32.336842l-194.021052 113.178947c-8.084211 0-13.473684 2.694737-18.863158 2.694737z m0-261.389474l2.694737 223.663158 188.631579-113.178947-191.326316-110.484211z"
+          fill="#10ABFF" p-id="5354"></path>
+      </svg>
+    </div>
+    <div id="why_search_btn">
+      <svg t="1666160593197" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="28431" width="32" height="32"><path d="M747.424 634.208a16 16 0 0 0-22.624 0l-90.528 90.496a16 16 0 0 0 0 22.624l220.928 220.928a79.936 79.936 0 0 0 112.992-0.128c31.36-31.36 31.36-81.792 0.128-113.024l-220.896-220.896z" fill="#4FCAC3" p-id="28432"></path><path d="M432 800C228.768 800 64 635.232 64 432S228.768 64 432 64 800 228.768 800 432 635.232 800 432 800z" fill="#84EBF1" p-id="28433"></path><path d="M432 736a304 304 0 1 0 0-608 304 304 0 0 0 0 608z" fill="#FFF5E8" p-id="28434"></path><path d="M590.4 316.128a96.128 96.128 0 0 1 0 135.776l-158.368 158.4-158.4-158.4a96.064 96.064 0 0 1 0-135.776 96.128 96.128 0 0 1 135.776 0l22.624 22.624 22.624-22.624a96.064 96.064 0 0 1 135.776 0z" fill="#F83B57" p-id="28435"></path></svg>
+    </div id="why_search_btn">
+    <div id="why_detail_btn">
+      <svg t="1666095047423" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        p-id="4092" width="32" height="32">
+        <path d="M0 0m0 0l1024 0q0 0 0 0l0 1024q0 0 0 0l-1024 0q0 0 0 0l0-1024q0 0 0 0Z" fill="#E8EFF8" p-id="4093">
+        </path>
+        <path
+          d="M395.636364 651.636364a23.272727 23.272727 0 0 1 23.272727-23.272728h395.636364a23.272727 23.272727 0 0 1 23.272727 23.272728v116.363636a23.272727 23.272727 0 0 1-23.272727 23.272727H418.909091a23.272727 23.272727 0 0 1-23.272727-23.272727v-116.363636z"
+          fill="#247ADE" p-id="4094"></path>
+        <path
+          d="M395.636364 442.181818a23.272727 23.272727 0 0 1 23.272727-23.272727h395.636364a23.272727 23.272727 0 0 1 23.272727 23.272727v116.363637a23.272727 23.272727 0 0 1-23.272727 23.272727H418.909091a23.272727 23.272727 0 0 1-23.272727-23.272727v-116.363637z"
+          fill="#69CB91" p-id="4095"></path>
+        <path
+          d="M395.636364 232.727273a23.272727 23.272727 0 0 1 23.272727-23.272728h395.636364a23.272727 23.272727 0 0 1 23.272727 23.272728v116.363636a23.272727 23.272727 0 0 1-23.272727 23.272727H418.909091a23.272727 23.272727 0 0 1-23.272727-23.272727v-116.363636zM302.545455 232.727273a23.272727 23.272727 0 0 0-23.272728-23.272728H162.909091a23.272727 23.272727 0 0 0-23.272727 23.272728v535.272727a23.272727 23.272727 0 0 0 23.272727 23.272727h116.363636a23.272727 23.272727 0 0 0 23.272728-23.272727V232.727273z"
+          fill="#A0BFF7" p-id="4096"></path>
+      </svg>
+    </div>
+
+    <div id="why_home_btn">
+      <svg t="1666105542520" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        p-id="4976" width="32" height="32">
+        <path
+          d="M932.119273 516.049455l-1.117091 365.940363a93.277091 93.277091 0 0 1-93.090909 92.997818H185.949091A93.184 93.184 0 0 1 93.090909 882.036364V514.792727l-21.876364 21.876364A34.909091 34.909091 0 0 1 21.876364 487.330909l432.686545-432.733091a80.989091 80.989091 0 0 1 114.874182 0l432.686545 432.733091a34.909091 34.909091 0 0 1-49.338181 49.338182l-20.666182-20.619636z m-445.812364 229.701818l142.103273-97.466182c42.496-29.137455 42.589091-76.474182 0-105.658182l-142.103273-97.466182c-42.496-29.137455-77.032727-11.124364-77.032727 40.354909v219.834182c0 51.293091 34.490182 69.585455 77.032727 40.401455z"
+          fill="#FF4029" p-id="4977"></path>
+      </svg>
+    </div>
+  </div>
+  <div id="why_search_panel" style="display: none;">
+    <div id="why_box">
+      <div id="why_search_box">
+        <div class="why_search_func">
+          <svg t="1666078714231" id="video_search_close" class="icon" viewBox="0 0 1024 1024" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" p-id="7794" width="32" height="32">
+            <path
+              d="M675.328 117.717333A425.429333 425.429333 0 0 0 512 85.333333C276.352 85.333333 85.333333 276.352 85.333333 512s191.018667 426.666667 426.666667 426.666667 426.666667-191.018667 426.666667-426.666667c0-56.746667-11.093333-112-32.384-163.328a21.333333 21.333333 0 0 0-39.402667 16.341333A382.762667 382.762667 0 0 1 896 512c0 212.074667-171.925333 384-384 384S128 724.074667 128 512 299.925333 128 512 128c51.114667 0 100.8 9.984 146.986667 29.12a21.333333 21.333333 0 0 0 16.341333-39.402667z m-324.693333 373.013334l174.464-174.485334a21.141333 21.141333 0 0 0-0.192-29.973333 21.141333 21.141333 0 0 0-29.973334-0.192l-208.256 208.256a20.821333 20.821333 0 0 0-6.122666 14.976c0.042667 5.418667 2.133333 10.837333 6.314666 14.997333l211.178667 211.2a21.141333 21.141333 0 0 0 29.973333 0.213334 21.141333 21.141333 0 0 0-0.213333-29.973334l-172.629333-172.629333 374.997333 2.602667a20.693333 20.693333 0 0 0 21.034667-21.034667 21.482667 21.482667 0 0 0-21.333334-21.333333l-379.242666-2.624z"
+              fill="#3D3D3D" p-id="7795"></path>
+          </svg>
+          <input id="why_search_info" />
+          <button id="why_btn"
+            style="margin-left: 10px; border: 1px solid #ccc;padding: 5px 10px;border-radius: 5px; width: 70px;">搜索</button>
+          <span id="why_search_progress"></span>
+        </div>
+
+        <div class="video_list_panel">
+
+          <div class="video_list_box">
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="why_mask" style="display: none;"></div>
+  <div id="why_play_panel" style="display: none;">
+    <div id="why_play_box">
+      <div class="why_play_bg">
+        <input class="why_play_video_url" />
+        <button class="why_play_video"
+          style="margin-left: 10px; border: 1px solid #ccc;padding: 5px 10px;border-radius: 5px; width: 70px;">播放</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  let dp = null;
+  function initDplayer(video){
+    dp = new DPlayer({
+      container: document.getElementById('dplayer'),
+      screenshot: false, // 是否允许截图（按钮），点击可以自动将截图下载到本地
+      hotkey: true, // 是否支持热键，调节音量，播放，暂停等
+      preload: 'auto', // 自动预加载
+      volume: 0.7, // 初始化音量
+      video
+    });
+    
+    
+    dp.on('quality_end', function () {
+      console.log('quality_end ended');
+      dp.seek(0)
+    });
+    
+  }
+  initDplayer({});
+  // initDplayer({
+  //   quality: [
+  //     {
+  //         name: 'rm',
+  //         url: 'https://vip.lz-cdn11.com/20221017/11100_a2e1630d/index.m3u8',
+  //         type: 'hls',
+  //     },
+  //     {
+  //         name: '爱情公寓',
+  //         url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4',
+  //         type: 'normal',
+  //     }],
+  //     defaultQuality: 0,
+  // })
+  
+  $(document).ready(function () {
+    console.log("============  加载完成 ",dp)
+    $("#why_search_btn").click(() => {
+      $("#why_search_panel").toggle()
+      $(".why_mask").show()
+
+      // dp.switchVideo({
+      //   url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4'
+      // });
+    })
+    $("#why_play_btn").click(() => {
+      $("#why_play_panel").toggle()
+      $(".why_mask").show()
+
+      // dp.switchVideo({
+      //   url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4'
+      // });
+    })
+    $(".why_mask").click(() => {
+      $("#why_play_panel").hide()
+      $("#why_search_panel").hide()
+      $(".why_mask").hide()
+    })
+    $(".why_play_video").click(() => {
+      initDplayer({
+        quality: [
+          {
+              name: 'rm',
+              url: 'https://vip.lz-cdn11.com/20221017/11100_a2e1630d/index.m3u8',
+              type: 'hls',
+          },
+          {
+              name: '爱情公寓',
+              url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4',
+              type: 'normal',
+          }],
+          defaultQuality: 0,
+      })
+      return
+
+
+      var url = $(".why_play_video_url").val();
+       $(".dplayer-box").show()
+       dp.switchVideo({
+            url
+        });
+    })
+  });
+</script>
+
+<style>
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .dplayer-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #dplayer {
+    width: 90%;
+    max-height: 80%;
+  }
+
+  .options-box {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    z-index: 9999;
+  }
+
+  #why_box, #why_play_box {
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    pointer-events: none;
+    /* background: #00000085; */
+  }
+
+  .why_mask {
+    position: absolute;
+    z-index: 99;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #00000085;
+  }
+
+  .why_play_bg{
+    width: 500px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  #video_search_close {
+    margin: 2px 2px 0px 0px;
+    position: absolute;
+    margin-left: -350px;
+  }
+
+  #why_search_info {
+    border: 1px solid #ccc;
+    padding: 7px;
+    border-radius: 5px;
+    width: 120px;
+  }
+
+  .why_play_video_url {
+    border: 1px solid #ccc;
+    padding: 7px;
+    border-radius: 5px;
+    width: 390px;
+  }
+
+  #why_search_progress {
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 30px;
+    text-align: center;
+  }
+
+  #why_search_box {
+    width: 400px;
+    height: 500px;
+    background: white;
+    border-radius: 5px;
+    filter: drop-shadow(2px 4px 6px black);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    pointer-events: auto;
+  }
+
+  .why_search_func {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 10px 0px;
+    font-size: 18px;
+  }
+
+  .video_list_panel {
+    background: #9bd0fa36;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: wrap;
+    margin-top: 5px;
+    width: 390px;
+    overflow-y: scroll;
+    height: 430px;
+    justify-content: center;
+  }
+
+  .video_list_box{
+    margin: 10px 0px;border-radius: 5px;display: flex;flex-flow: wrap;width: 380px;justify-content: center;
+  }
+
+
+
+
+  .dplayer-controller .dplayer-icons .dplayer-quality .dplayer-quality-list {
+    max-height: 300px;
+    width: 100px !important;
+    overflow: auto !important;
+  }
+</style>
+
+</html>
