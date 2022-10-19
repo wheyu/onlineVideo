@@ -164,21 +164,21 @@
       $(".why_mask").hide()
     })
     $(".why_play_video").click(() => {
-      initDplayer({
-        quality: [
-          {
-              name: 'rm',
-              url: 'https://vip.lz-cdn11.com/20221017/11100_a2e1630d/index.m3u8',
-              type: 'hls',
-          },
-          {
-              name: '爱情公寓',
-              url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4',
-              type: 'normal',
-          }],
-          defaultQuality: 0,
-      })
-      return
+      // initDplayer({
+      //   quality: [
+      //     {
+      //         name: 'rm',
+      //         url: 'https://vip.lz-cdn11.com/20221017/11100_a2e1630d/index.m3u8',
+      //         type: 'hls',
+      //     },
+      //     {
+      //         name: '爱情公寓',
+      //         url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4',
+      //         type: 'normal',
+      //     }],
+      //     defaultQuality: 0,
+      // })
+      // return
 
 
       var url = $(".why_play_video_url").val();
@@ -208,7 +208,7 @@
   }
 
   #dplayer {
-    width: 90%;
+    max-width: 70%;
     max-height: 80%;
   }
 
