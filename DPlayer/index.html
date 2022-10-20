@@ -177,6 +177,7 @@
   var detailVideoData = null;
   var localData = null
   var localData2 = null
+  let w_url = 'http://101.133.157.103:1111'
 
   function recovery() {
     localData = JSON.parse(localStorage.getItem("searchList"))
@@ -241,7 +242,7 @@
       var from = $(item.target).attr("from")
       var vId = $(item.target).attr("vId")
       showLoading();
-      $.get(`http://101.133.157.103:1111/detail?vId=${vId}&from=${from}`, function (list, status) {
+      $.get(`${w_url}/detail?vId=${vId}&from=${from}`, function (list, status) {
         if (status == "success") {
           var rData = JSON.parse(list)
           clickDetailItem(rData[0])
@@ -272,7 +273,11 @@
     $(".video_detail_time").text(videoDetailObj.vod_time)
     $(".video_detail_content").text(videoDetailObj.vod_blurb) //video_detail_Pic
     $(".video_detail_Pic").attr('src', videoDetailObj.vod_pic)
-    var playInfo = videoDetailObj.vod_play_url + (videoDetailObj.vod_down_url ? "$$$" + videoDetailObj.vod_down_url : "")
+    var playInfo = videoDetailObj.vod_play_url
+    if(videoDetailObj.vod_down_url && videoDetailObj.vod_down_url.length > 10) {
+      playInfo += "$$$" + videoDetailObj.vod_down_url
+    }
+    
 
     var yuanList = playInfo.split("$$$")
     addVideoYuanToggleItem(yuanList)
@@ -411,7 +416,7 @@
     $(".why_search_click").click(() => {
       var searchData = $(".why_search_info").val();
       showLoading();
-      $.get("http://101.133.157.103:1111/list?searchData=" + searchData, function (list, status) {
+      $.get(`${w_url}/list?searchData=${searchData}`, function (list, status) {
         if (status == "success") {
           addSearchItem(JSON.parse(list))
           localStorage.setItem("searchList", list)
