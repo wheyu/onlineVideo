@@ -193,6 +193,7 @@
       hotkey: true, // 是否支持热键，调节音量，播放，暂停等
       preload: 'auto', // 自动预加载
       volume: 0.7, // 初始化音量
+      autoplay: true,
       video
     });
     dp.on('quality_end', function () {
@@ -297,14 +298,23 @@
       addVideoYuanItem(yuan_data)
     })
   }
+ 
 
   function addVideoYuanItem(yuan_data) {
     yuan_data.split("#").forEach((l, i) => {
       if(l && l.length > 10) {
         var name_url = l.split("$")
-        $(".video_yuan_box").append(`
-            <span class="video_yuan_item" yuan_data="${yuan_data}" vUrl="${name_url[1]}" index="${i}">${name_url[0]}</span>
-          `)
+        var url = name_url[1]
+        var name = name_url[0]
+        if (/\.(m3u8|mp4)$/g.test(url)) {
+          $(".video_yuan_box").append(`
+              <span class="video_yuan_item" yuan_data="${yuan_data}" vUrl="${url}" index="${i}">${name}</span>
+            `)
+        } else {
+          $(".video_yuan_box").append(`
+              <span class="video_yuan_item addXing" yuan_data="${yuan_data}" vUrl="${url}" index="${i}">${name}</span>
+            `)
+        }
       }
     })
     addVideoYuanItemClick();
@@ -313,6 +323,8 @@
   function addVideoYuanItemClick() {
 
     $(".video_yuan_item").click((item) => {
+      $(item.target).addClass("video_choose").siblings().removeClass("video_choose");
+      
       var index = $(item.target).attr("index")
       var vUrl = $(item.target).attr("vUrl")
       if (!/\.(m3u8|mp4)$/g.test(vUrl)) {
@@ -340,7 +352,7 @@
 
       })
       initDplayer(initPlayerData)
-      hideAll();
+      // hideAll();
     })
   }
 
@@ -739,6 +751,12 @@
     background-color: black;
   }
 
+  .video_choose {
+    color: white;
+    background-color: blue !important;
+    font-weight: 600;
+  }
+
   .video_yuan_box {
     white-space: nowrap;
     height: 42px;
@@ -763,7 +781,11 @@
 
 
 
-
+  .addXing:before {
+    content: '*';
+    color: #f90000;
+    font-size: 100%;
+  }
 
 
 
