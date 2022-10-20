@@ -80,14 +80,9 @@
     <div id="why_box">
       <div id="why_search_box">
         <div class="why_search_func">
-          <!-- <svg t="1666078714231" class="video_search_close" class="icon" viewBox="0 0 1024 1024" version="1.1"
-            xmlns="http://www.w3.org/2000/svg" p-id="7794" width="32" height="32">
-            <path
-              d="M675.328 117.717333A425.429333 425.429333 0 0 0 512 85.333333C276.352 85.333333 85.333333 276.352 85.333333 512s191.018667 426.666667 426.666667 426.666667 426.666667-191.018667 426.666667-426.666667c0-56.746667-11.093333-112-32.384-163.328a21.333333 21.333333 0 0 0-39.402667 16.341333A382.762667 382.762667 0 0 1 896 512c0 212.074667-171.925333 384-384 384S128 724.074667 128 512 299.925333 128 512 128c51.114667 0 100.8 9.984 146.986667 29.12a21.333333 21.333333 0 0 0 16.341333-39.402667z m-324.693333 373.013334l174.464-174.485334a21.141333 21.141333 0 0 0-0.192-29.973333 21.141333 21.141333 0 0 0-29.973334-0.192l-208.256 208.256a20.821333 20.821333 0 0 0-6.122666 14.976c0.042667 5.418667 2.133333 10.837333 6.314666 14.997333l211.178667 211.2a21.141333 21.141333 0 0 0 29.973333 0.213334 21.141333 21.141333 0 0 0-0.213333-29.973334l-172.629333-172.629333 374.997333 2.602667a20.693333 20.693333 0 0 0 21.034667-21.034667 21.482667 21.482667 0 0 0-21.333334-21.333333l-379.242666-2.624z"
-              fill="#3D3D3D" p-id="7795"></path>
-          </svg> -->
           <input class="why_search_info" />
-          <button class="why_btn why_search_click">搜索</button>
+          <img class="why_btn why_search_click" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFnklEQVRoQ+2ZbYhUVRjH/885s7vuzJ2RAlcNiTCk0EwwTDEQhUgyU6R27qz0tgX2QgWWRC8fsg+JkWlUZAj2KrpzTdhKrSTY3tC2N8gyMi0kQ90xJHbu3XK95zxx7+zMzs7uzN4ZZyal7rdhnuc5/995vff8Cef5Q+e5fvyHALp4DE72Tw6p/pZajporG1MY1/grFtDfQdopPQIvHGqSEy7awOB5xJgWpGC1YphwgECfqhPHVuLBKaeL1S0KIK20CaZNAGLVElVhnV4Qr1DxaHKk/BEBGt7um62V/iKbwMD3AviIga9I8/EKhQRKY0ETCZilgWsJmJ5NElLMOXNzuLuwyHCALg7JlPM7gPF+MGGPQt9NiLfYgRRUK8hKGRLhHWBcN1CyR7VEJmEBuflNDAMIJe11DDzsBzG9pBKRB6qlqZI6ssN5EcT3Z/oSz7mmsaokgEimfyLQZQz6VkfDc7GIii6gSgSVnbObm0S6by+BZzL4oDajlxcHsLhZstOXCeBXlBm9t+wGa5Agk+mNAN3jlVYUCSNOf2WbGTqFttpXSonv/D+1bldtsddroKfsknJb7x0Q4jUfQGEGlhv7RwQIbUvPZ0Fd/nzTvMBti35cdms1SCila8gIVAXASo8LKUzTJKZCwBWsDrgKB7E89kelbHUBkB3pVgjRCubWEYUSbYfW21Uiur1ckJoDSMuxCoQ7AFIAnYB/GLGRE030roLbjvjYU0FBagowRDxhDxS2qDbjrXxxssO5HsS3AmjLbHDoViJ0C+JjDgeBqBlAKGk/w8AjGU20WpuRp0oJyo8H6D1lRpb8awChZO81DPF5UPFZobIjnQDRNv+3oBtVa2TnaBA1GQFpOZ1gXgrC+ypuLBpNxJAplbTfAHBb0FGoPsAWjskG5ySARtJ6ntsW+6wcgMHRo37V2D8eyy74s+TUK3E+VXQOhJL2QgY+ANCjTGNCOeL92M0no9Jo7s3k6WXKjHXWFUAkex8niKeZsV8njBllA3jTP/fSqJ/QZmxNXQFk0rkT4M1gfK0SxqzKAOxvCJgJ0F3KjLxaXwDLuQHM3u7RrygSRZz6y4WQln0UjEkgWqzikV11BcAOZ6J0+ZjXKJGY68bD+8oC2NI3STbwLwA3Ki0uRlv4aH0BAEjL7gJjPkCdyowsKwcglLSfZWAViLpVPDJntNzqb6P+InSeJPBq/yBjrNQJ4/nRhHj/N3Q4MzVhn9f7QU5vL6cmAF7hwVHwJ9Ooi1F22O0g3gDQWDBvUono3UGgawbgQyRtzorwelRo/Unhh1CD5VyltV4BohXZWGUaga81awqQGWJ7DQs8NtibdAzEP+d++2sl9+xSprE4OwWDfPnVHCAznZwl0Ho9iC4tMi1+Y+K1Oh7dWDhyYNyuEsabxaZTXQD8xgcugCW5k1nTZLDSQtBh19VHcDp6BO2DF7b+FxyRlSd6uTKNzFtqwVM/gCArMi8mH6LUTnbOAvjbqrfAlZpe6grnnAYIMmiBAWCdnir5zIGBokXnZJBGqxkjk7b3Lb3Vq6moYRriTT9m6w/di7t4jEw5/rUdARtc03iomkIqrRVK2usZWOkDtESa892bYYeJsOwfPDfG8wQ09c2t+7V6IaWVMgSH93pegefa6LhxRX7IMABpOS+DOXOp63kDcWNhpT1XjTxp2R/mPAKijSoeua8kADxfbPzEVM5a8jyCWHhV3a/Zd3OT7O1bl/UGAPSqnuMthX7ZiO8jA/5YR5bU8woI+kto7ibQkWr0bLEaDL4EgmYzxNWeJ5CLI06M5JMVfaEa8MneyVlNtVRdunaPkGLpSP7YwGZTIruLQ6GUs1aDF3uuTT0ZPDdGgHa6LZFHC32x0mugmEqLm+E6U0LEF9YSxGU6hVDkUL4LU6q9wO/ktRR9NrX/Bzib3qtG7j9DcaFe4BFcmgAAAABJRU5ErkJggg==" />
+          <!-- <button class="why_btn why_search_click">搜索</button> -->
 
         </div>
 
@@ -305,10 +300,12 @@
 
   function addVideoYuanItem(yuan_data) {
     yuan_data.split("#").forEach((l, i) => {
-      var name_url = l.split("$")
-      $(".video_yuan_box").append(`
-          <span class="video_yuan_item" yuan_data="${yuan_data}" vUrl="${name_url[1]}" index="${i}">${name_url[0]}</span>
-        `)
+      if(l && l.length > 10) {
+        var name_url = l.split("$")
+        $(".video_yuan_box").append(`
+            <span class="video_yuan_item" yuan_data="${yuan_data}" vUrl="${name_url[1]}" index="${i}">${name_url[0]}</span>
+          `)
+      }
     })
     addVideoYuanItemClick();
   }
@@ -359,41 +356,16 @@
     $("#why_search_btn").click(() => {
       $("#why_search_panel").toggle()
       $(".why_mask").show()
-
-      // dp.switchVideo({
-      //   url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4'
-      // });
     })
     $("#why_play_btn").click(() => {
       $("#why_play_panel").show()
       $(".why_mask").show()
-
-      // dp.switchVideo({
-      //   url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4'
-      // });
     })
 
     $(".why_mask").click(() => {
       hideAll()
     })
     $(".why_play_video").click(() => {
-      // initDplayer({
-      //   quality: [
-      //     {
-      //         name: 'rm',
-      //         url: 'https://vip.lz-cdn11.com/20221017/11100_a2e1630d/index.m3u8',
-      //         type: 'hls',
-      //     },
-      //     {
-      //         name: '爱情公寓',
-      //         url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4',
-      //         type: 'normal',
-      //     }],
-      //     defaultQuality: 0,
-      // })
-      // return
-
-
       var url = $(".why_play_video_url").val();
       $(".dplayer-box").show()
       dp.switchVideo({
@@ -459,12 +431,17 @@
   }
 
   .why_btn {
-    margin-left: 10px;
-    border: 1px solid #ccc;
+    margin-left: 1%;
+    /* border: 1px solid #ccc;
     padding: 5px 10px;
-    border-radius: 5px;
-    max-width: 70px;
-    width: 22%;
+    border-radius: 5px; */
+    max-width: 40px;
+    width: 10%;
+
+  }
+
+  span{
+    cursor: pointer;
   }
 
   #why_box,
@@ -610,8 +587,8 @@
     border: 1px solid #ccc;
     padding: 7px;
     border-radius: 5px;
-    width: 60%;
-    max-width: 180px;
+    width: 80%;
+    max-width: 270px;
   }
 
   .why_play_video_url {
@@ -626,6 +603,7 @@
     width: 70%;
     max-width: 400px;
     max-height: 500px;
+    min-height: 300px;
     height: 70%;
     background: white;
     border-radius: 5px;
@@ -642,6 +620,7 @@
     display: flex;
     /* margin: 10px 0px; */
     font-size: 18px;
+    width: 100%;
   }
 
   .video_list_panel {
@@ -751,7 +730,6 @@
     padding: 2px 10px;
     margin: 0px 1px;
     border-radius: 5px;
-    cursor: default;
     /* background-color: lightblue; */
   }
 
