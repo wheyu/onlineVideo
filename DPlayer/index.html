@@ -9,7 +9,7 @@
   <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/hls.js/8.0.0-beta.3/hls.min.js"></script>
   <link rel="stylesheet" href="https://cdn.staticfile.org/dplayer/1.25.0/DPlayer.min.css">
-  <title>Document</title>
+  <title>wheyu视频工具</title>
 </head>
 
 <body>
@@ -205,20 +205,6 @@
     });
   }
   initDplayer({});
-  // initDplayer({
-  //   quality: [
-  //     {
-  //         name: 'rm',
-  //         url: 'https://vip.lz-cdn11.com/20221017/11100_a2e1630d/index.m3u8',
-  //         type: 'hls',
-  //     },
-  //     {
-  //         name: '爱情公寓',
-  //         url: 'https://dow.dowlzi.com/20220330/7467_62114034/爱情公寓S03E01.mp4',
-  //         type: 'normal',
-  //     }],
-  //     defaultQuality: 0,
-  // })
 
   recovery();
   function showLoading() {
@@ -255,7 +241,7 @@
       var from = $(item.target).attr("from")
       var vId = $(item.target).attr("vId")
       showLoading();
-      $.get(`http://192.168.0.106:1111/detail?vId=${vId}&from=${from}`, function (list, status) {
+      $.get(`http://101.133.157.103:1111/detail?vId=${vId}&from=${from}`, function (list, status) {
         if (status == "success") {
           var rData = JSON.parse(list)
           clickDetailItem(rData[0])
@@ -425,7 +411,7 @@
     $(".why_search_click").click(() => {
       var searchData = $(".why_search_info").val();
       showLoading();
-      $.get("http://192.168.0.106:1111/list?searchData=" + searchData, function (list, status) {
+      $.get("http://101.133.157.103:1111/list?searchData=" + searchData, function (list, status) {
         if (status == "success") {
           addSearchItem(JSON.parse(list))
           localStorage.setItem("searchList", list)
