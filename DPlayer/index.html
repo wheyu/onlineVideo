@@ -171,6 +171,7 @@
   var detailVideoData = null;
   var localData = null
   var localData2 = null
+  var yuanData = [];
   let w_url = 'http://101.133.157.103:1111'
 
   function recovery() {
@@ -193,15 +194,14 @@
       hotkey: true, // 是否支持热键，调节音量，播放，暂停等
       preload: 'auto', // 自动预加载
       volume: 0.7, // 初始化音量
-      autoplay: false,
+      autoplay: true,
       video
     });
     dp.on('quality_end', function () {
       dp.seek(0)
     });
   }
-  initDplayer({});
-
+  // initDplayer({});
   recovery();
   function showLoading() {
     $('.why_loading').show();
@@ -272,19 +272,23 @@
     if (videoDetailObj.vod_down_url && videoDetailObj.vod_down_url.length > 10) {
       playInfo += "$$$" + videoDetailObj.vod_down_url
     }
-
-
     var yuanList = playInfo.split("$$$").filter(x => x && x.length > 10)
+
+
     addVideoYuanToggleItem(yuanList)
 
     addVideoYuanToggleItemClick();
   }
+
   function addVideoYuanToggleItem(data) {
+    yuanData = [];
     data.forEach((l, i) => {
+      yuanData.push(l)
       $(".video_yuan_toggle").append(`
-        <span class="video_yuan_toggle_item" yuan_data="${l}">源${i + 1}</span>
+        <span class="video_yuan_toggle_item" yuan_index="${i}" yuan_data="${l}">源${i + 1}</span>
       `)
     })
+    localStorage.setItem("yuanData",JSON.stringify(yuanData))
     // if(data && data[0]) {
     //   addVideoYuanItem(data[0])
     // }
@@ -293,7 +297,8 @@
     $(".video_yuan_toggle_item").click((item) => {
 
       $(item.target).addClass("yuan_choose").siblings().removeClass("yuan_choose");
-      var yuan_data = $(item.target).attr("yuan_data")
+      var yuan_index = $(item.target).attr("yuan_index")
+      var yuan_data = (yuanData || JSON.parse(localStorage.getItem("yuanData")))[yuan_index]
       $(".video_yuan_box").empty()
       addVideoYuanItem(yuan_data)
     })
@@ -308,11 +313,11 @@
         var name = name_url[0]
         if (/\.(m3u8|mp4)$/g.test(url)) {
           $(".video_yuan_box").append(`
-              <span class="video_yuan_item" yuan_data="${yuan_data}" vUrl="${url}" index="${i}">${name}</span>
+              <span class="video_yuan_item" vUrl="${url}" index="${i}">${name}</span>
             `)
         } else {
           $(".video_yuan_box").append(`
-              <span class="video_yuan_item addXing" yuan_data="${yuan_data}" vUrl="${url}" index="${i}">${name}</span>
+              <span class="video_yuan_item addXing" vUrl="${url}" index="${i}">${name}</span>
             `)
         }
       }
@@ -327,33 +332,38 @@
       
       var index = $(item.target).attr("index")
       var vUrl = $(item.target).attr("vUrl")
+      var name = $(item.target).text();
       if (!/\.(m3u8|mp4)$/g.test(vUrl)) {
         window.open(vUrl);
-        return
+        // return
+      } else {
+        playVideoFunc(vUrl, name)
       }
-      var yuan_data = $(item.target).attr("yuan_data")
-      var jiList = yuan_data.split("#")
-      var initPlayerData = {
-        quality: [],
-        defaultQuality: index,
-      }
-      jiList.forEach(item => {
-        var name_url = item.split("$")
-        var name = name_url[0]
-        var url = name_url[1]
-        var type = "auto";
-        if (/\.m3u8$/g.test(url)) {
-          type = "hls"
-        }
-        if (/\.mp4$/g.test(url)) {
-          type = "normal"
-        }
-        initPlayerData.quality.push({ name, url, type, })
-
-      })
-      initDplayer(initPlayerData)
       hideAll();
     })
+  }
+
+  function playVideoFunc(url,name){
+    $("#dplayer").remove();
+    
+    $(".dplayer-box").append(`<div id="dplayer"></div>`);
+
+    var type = "auto";
+    if (/\.m3u8$/g.test(url)) {
+      type = "hls"
+    }
+    if (/\.mp4$/g.test(url)) {
+      type = "normal"
+    }
+    var initPlayerData = {
+      quality: [{name: name || "HD", url, type}],
+      defaultQuality: 0,
+    }
+    initDplayer(initPlayerData);
+
+    // dp.switchVideo({
+    //   name, url, type
+    // })
   }
 
   function hideAll() {
@@ -380,9 +390,7 @@
     $(".why_play_video").click(() => {
       var url = $(".why_play_video_url").val();
       $(".dplayer-box").show()
-      dp.switchVideo({
-        url
-      });
+      playVideoFunc(url)
     })
     $(".video_search_close").click(() => {
       $("#why_search_panel").hide();
@@ -443,14 +451,9 @@
 
   .why_btn {
     margin-left: 1%;
-    /* border: 1px solid #ccc;
-    padding: 5px 10px;
-    border-radius: 5px; */
     max-width: 40px;
     width: 10%;
-
   }
-
   span{
     cursor: pointer;
   }
@@ -468,7 +471,6 @@
     justify-content: center;
     display: flex;
     pointer-events: none;
-    /* background: #00000085; */
   }
 
   #why_detail_content {
