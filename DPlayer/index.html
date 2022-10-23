@@ -13,8 +13,7 @@
 </head>
 
 <body>
-  <div class="dplayer-box">
-    <div id="dplayer"></div>
+  <div class="video-box">
   </div>
   <div class="options-box">
     <div id="why_play_btn">
@@ -81,7 +80,9 @@
       <div id="why_search_box">
         <div class="why_search_func">
           <input class="why_search_info" />
-          <img class="why_btn why_search_click" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFnklEQVRoQ+2ZbYhUVRjH/885s7vuzJ2RAlcNiTCk0EwwTDEQhUgyU6R27qz0tgX2QgWWRC8fsg+JkWlUZAj2KrpzTdhKrSTY3tC2N8gyMi0kQ90xJHbu3XK95zxx7+zMzs7uzN4ZZyal7rdhnuc5/995vff8Cef5Q+e5fvyHALp4DE72Tw6p/pZajporG1MY1/grFtDfQdopPQIvHGqSEy7awOB5xJgWpGC1YphwgECfqhPHVuLBKaeL1S0KIK20CaZNAGLVElVhnV4Qr1DxaHKk/BEBGt7um62V/iKbwMD3AviIga9I8/EKhQRKY0ETCZilgWsJmJ5NElLMOXNzuLuwyHCALg7JlPM7gPF+MGGPQt9NiLfYgRRUK8hKGRLhHWBcN1CyR7VEJmEBuflNDAMIJe11DDzsBzG9pBKRB6qlqZI6ssN5EcT3Z/oSz7mmsaokgEimfyLQZQz6VkfDc7GIii6gSgSVnbObm0S6by+BZzL4oDajlxcHsLhZstOXCeBXlBm9t+wGa5Agk+mNAN3jlVYUCSNOf2WbGTqFttpXSonv/D+1bldtsddroKfsknJb7x0Q4jUfQGEGlhv7RwQIbUvPZ0Fd/nzTvMBti35cdms1SCila8gIVAXASo8LKUzTJKZCwBWsDrgKB7E89kelbHUBkB3pVgjRCubWEYUSbYfW21Uiur1ckJoDSMuxCoQ7AFIAnYB/GLGRE030roLbjvjYU0FBagowRDxhDxS2qDbjrXxxssO5HsS3AmjLbHDoViJ0C+JjDgeBqBlAKGk/w8AjGU20WpuRp0oJyo8H6D1lRpb8awChZO81DPF5UPFZobIjnQDRNv+3oBtVa2TnaBA1GQFpOZ1gXgrC+ypuLBpNxJAplbTfAHBb0FGoPsAWjskG5ySARtJ6ntsW+6wcgMHRo37V2D8eyy74s+TUK3E+VXQOhJL2QgY+ANCjTGNCOeL92M0no9Jo7s3k6WXKjHXWFUAkex8niKeZsV8njBllA3jTP/fSqJ/QZmxNXQFk0rkT4M1gfK0SxqzKAOxvCJgJ0F3KjLxaXwDLuQHM3u7RrygSRZz6y4WQln0UjEkgWqzikV11BcAOZ6J0+ZjXKJGY68bD+8oC2NI3STbwLwA3Ki0uRlv4aH0BAEjL7gJjPkCdyowsKwcglLSfZWAViLpVPDJntNzqb6P+InSeJPBq/yBjrNQJ4/nRhHj/N3Q4MzVhn9f7QU5vL6cmAF7hwVHwJ9Ooi1F22O0g3gDQWDBvUono3UGgawbgQyRtzorwelRo/Unhh1CD5VyltV4BohXZWGUaga81awqQGWJ7DQs8NtibdAzEP+d++2sl9+xSprE4OwWDfPnVHCAznZwl0Ho9iC4tMi1+Y+K1Oh7dWDhyYNyuEsabxaZTXQD8xgcugCW5k1nTZLDSQtBh19VHcDp6BO2DF7b+FxyRlSd6uTKNzFtqwVM/gCArMi8mH6LUTnbOAvjbqrfAlZpe6grnnAYIMmiBAWCdnir5zIGBokXnZJBGqxkjk7b3Lb3Vq6moYRriTT9m6w/di7t4jEw5/rUdARtc03iomkIqrRVK2usZWOkDtESa892bYYeJsOwfPDfG8wQ09c2t+7V6IaWVMgSH93pegefa6LhxRX7IMABpOS+DOXOp63kDcWNhpT1XjTxp2R/mPAKijSoeua8kADxfbPzEVM5a8jyCWHhV3a/Zd3OT7O1bl/UGAPSqnuMthX7ZiO8jA/5YR5bU8woI+kto7ibQkWr0bLEaDL4EgmYzxNWeJ5CLI06M5JMVfaEa8MneyVlNtVRdunaPkGLpSP7YwGZTIruLQ6GUs1aDF3uuTT0ZPDdGgHa6LZFHC32x0mugmEqLm+E6U0LEF9YSxGU6hVDkUL4LU6q9wO/ktRR9NrX/Bzib3qtG7j9DcaFe4BFcmgAAAABJRU5ErkJggg==" />
+          <input class="why_search_pages_info" type="text" maxlength="2" />
+          <img class="why_btn why_search_click"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFnklEQVRoQ+2ZbYhUVRjH/885s7vuzJ2RAlcNiTCk0EwwTDEQhUgyU6R27qz0tgX2QgWWRC8fsg+JkWlUZAj2KrpzTdhKrSTY3tC2N8gyMi0kQ90xJHbu3XK95zxx7+zMzs7uzN4ZZyal7rdhnuc5/995vff8Cef5Q+e5fvyHALp4DE72Tw6p/pZajporG1MY1/grFtDfQdopPQIvHGqSEy7awOB5xJgWpGC1YphwgECfqhPHVuLBKaeL1S0KIK20CaZNAGLVElVhnV4Qr1DxaHKk/BEBGt7um62V/iKbwMD3AviIga9I8/EKhQRKY0ETCZilgWsJmJ5NElLMOXNzuLuwyHCALg7JlPM7gPF+MGGPQt9NiLfYgRRUK8hKGRLhHWBcN1CyR7VEJmEBuflNDAMIJe11DDzsBzG9pBKRB6qlqZI6ssN5EcT3Z/oSz7mmsaokgEimfyLQZQz6VkfDc7GIii6gSgSVnbObm0S6by+BZzL4oDajlxcHsLhZstOXCeBXlBm9t+wGa5Agk+mNAN3jlVYUCSNOf2WbGTqFttpXSonv/D+1bldtsddroKfsknJb7x0Q4jUfQGEGlhv7RwQIbUvPZ0Fd/nzTvMBti35cdms1SCila8gIVAXASo8LKUzTJKZCwBWsDrgKB7E89kelbHUBkB3pVgjRCubWEYUSbYfW21Uiur1ckJoDSMuxCoQ7AFIAnYB/GLGRE030roLbjvjYU0FBagowRDxhDxS2qDbjrXxxssO5HsS3AmjLbHDoViJ0C+JjDgeBqBlAKGk/w8AjGU20WpuRp0oJyo8H6D1lRpb8awChZO81DPF5UPFZobIjnQDRNv+3oBtVa2TnaBA1GQFpOZ1gXgrC+ypuLBpNxJAplbTfAHBb0FGoPsAWjskG5ySARtJ6ntsW+6wcgMHRo37V2D8eyy74s+TUK3E+VXQOhJL2QgY+ANCjTGNCOeL92M0no9Jo7s3k6WXKjHXWFUAkex8niKeZsV8njBllA3jTP/fSqJ/QZmxNXQFk0rkT4M1gfK0SxqzKAOxvCJgJ0F3KjLxaXwDLuQHM3u7RrygSRZz6y4WQln0UjEkgWqzikV11BcAOZ6J0+ZjXKJGY68bD+8oC2NI3STbwLwA3Ki0uRlv4aH0BAEjL7gJjPkCdyowsKwcglLSfZWAViLpVPDJntNzqb6P+InSeJPBq/yBjrNQJ4/nRhHj/N3Q4MzVhn9f7QU5vL6cmAF7hwVHwJ9Ooi1F22O0g3gDQWDBvUono3UGgawbgQyRtzorwelRo/Unhh1CD5VyltV4BohXZWGUaga81awqQGWJ7DQs8NtibdAzEP+d++2sl9+xSprE4OwWDfPnVHCAznZwl0Ho9iC4tMi1+Y+K1Oh7dWDhyYNyuEsabxaZTXQD8xgcugCW5k1nTZLDSQtBh19VHcDp6BO2DF7b+FxyRlSd6uTKNzFtqwVM/gCArMi8mH6LUTnbOAvjbqrfAlZpe6grnnAYIMmiBAWCdnir5zIGBokXnZJBGqxkjk7b3Lb3Vq6moYRriTT9m6w/di7t4jEw5/rUdARtc03iomkIqrRVK2usZWOkDtESa892bYYeJsOwfPDfG8wQ09c2t+7V6IaWVMgSH93pegefa6LhxRX7IMABpOS+DOXOp63kDcWNhpT1XjTxp2R/mPAKijSoeua8kADxfbPzEVM5a8jyCWHhV3a/Zd3OT7O1bl/UGAPSqnuMthX7ZiO8jA/5YR5bU8woI+kto7ibQkWr0bLEaDL4EgmYzxNWeJ5CLI06M5JMVfaEa8MneyVlNtVRdunaPkGLpSP7YwGZTIruLQ6GUs1aDF3uuTT0ZPDdGgHa6LZFHC32x0mugmEqLm+E6U0LEF9YSxGU6hVDkUL4LU6q9wO/ktRR9NrX/Bzib3qtG7j9DcaFe4BFcmgAAAABJRU5ErkJggg==" />
           <!-- <button class="why_btn why_search_click">搜索</button> -->
 
         </div>
@@ -112,7 +113,7 @@
 
         <div class="video_detail_item">
           <div class="video_detail_name">
-            </div>
+          </div>
           <div style="margin: 6px 0px;">
             <div class="video_detail_tip">
               <span class="video_detail_type"></span>
@@ -172,9 +173,12 @@
   var localData = null
   var localData2 = null
   var yuanData = [];
+  var playVideoList = [];
+  var searchType = null;
   let w_url = 'http://101.133.157.103:1111'
 
   function recovery() {
+    searchType = localStorage.getItem("searchType")
     localData = JSON.parse(localStorage.getItem("searchList"))
     localData2 = JSON.parse(localStorage.getItem("detailVideoData"))
     if (localData) {
@@ -197,8 +201,11 @@
       autoplay: true,
       video
     });
-    dp.on('quality_end', function () {
-      dp.seek(0)
+    dp.on('error', function () {
+      alert("加载失败")
+    });
+    dp.on('ended', function () {
+      toggleDetailPanel();
     });
   }
   // initDplayer({});
@@ -218,8 +225,8 @@
       $(".video_list_box").append(`
         <div class="video_list_item" from="${data.from}" vId="${data.vod_id}">
         <span class="video_item_name">${data.vod_name}</span>
-        <span class="video_item_from">${data.from}</span>
         <div class="vide_item_tip">
+        <span class="video_item_from">${data.from}</span>
         <span class="video_item_type">${data.type_name}</span>
         <span class="video_item_remark">${data.vod_remarks}</span>
         <span class="video_item_time">${data.vod_time}</span>
@@ -237,7 +244,7 @@
       var from = $(item.target).attr("from")
       var vId = $(item.target).attr("vId")
       showLoading();
-      $.get(`${w_url}/detail?vId=${vId}&from=${from}`, function (list, status) {
+      $.get(`${w_url}/detail?vId=${vId}&from=${from}&searchType=${searchType}`, function (list, status) {
         if (status == "success") {
           var rData = JSON.parse(list)
           clickDetailItem(rData[0])
@@ -288,7 +295,7 @@
         <span class="video_yuan_toggle_item" yuan_index="${i}" yuan_data="${l}">源${i + 1}</span>
       `)
     })
-    localStorage.setItem("yuanData",JSON.stringify(yuanData))
+    localStorage.setItem("yuanData", JSON.stringify(yuanData))
     // if(data && data[0]) {
     //   addVideoYuanItem(data[0])
     // }
@@ -303,11 +310,11 @@
       addVideoYuanItem(yuan_data)
     })
   }
- 
+
 
   function addVideoYuanItem(yuan_data) {
     yuan_data.split("#").forEach((l, i) => {
-      if(l && l.length > 10) {
+      if (l && l.length > 10) {
         var name_url = l.split("$")
         var url = name_url[1]
         var name = name_url[0]
@@ -329,24 +336,27 @@
 
     $(".video_yuan_item").click((item) => {
       $(item.target).addClass("video_choose").siblings().removeClass("video_choose");
-      
+
       var index = $(item.target).attr("index")
       var vUrl = $(item.target).attr("vUrl")
       var name = $(item.target).text();
-      if (!/\.(m3u8|mp4)$/g.test(vUrl)) {
-        window.open(vUrl);
-        // return
-      } else {
-        playVideoFunc(vUrl, name)
-      }
+      playVideoFunc(vUrl, name)
       hideAll();
     })
   }
 
-  function playVideoFunc(url,name){
+  function playVideoFunc(url, name) {
     $("#dplayer").remove();
+    $("#outVideo").remove();
+
     
-    $(".dplayer-box").append(`<div id="dplayer"></div>`);
+    if (!/\.(m3u8|mp4)$/g.test(url)) {
+      $(".video-box").append(`<iframe id="outVideo" src="${url}" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>`);
+        return
+    }
+
+
+    $(".video-box").append(`<div id="dplayer"></div>`);
 
     var type = "auto";
     if (/\.m3u8$/g.test(url)) {
@@ -356,14 +366,10 @@
       type = "normal"
     }
     var initPlayerData = {
-      quality: [{name: name || "HD", url, type}],
+      quality: [{ name: name || "HD", url, type }],
       defaultQuality: 0,
     }
     initDplayer(initPlayerData);
-
-    // dp.switchVideo({
-    //   name, url, type
-    // })
   }
 
   function hideAll() {
@@ -371,6 +377,18 @@
     $("#why_search_panel").hide()
     $("#why_detail_panel").hide()
     $(".why_mask").hide()
+    $("#dplayer").show()
+    $("#outVideo").show()
+  }
+
+
+  function toggleDetailPanel() {
+    if (localData2) {
+      $("#dplayer").toggle()
+      $("#outVideo").toggle()
+      $("#why_detail_panel").toggle();
+      $(".why_mask").toggle()
+    }
   }
 
   $(document).ready(function () {
@@ -389,7 +407,18 @@
     })
     $(".why_play_video").click(() => {
       var url = $(".why_play_video_url").val();
-      $(".dplayer-box").show()
+      var matches = url.match(/(?<=key:).*/g)
+      hideAll()
+      if (url.length < 12) {
+        if (matches && matches[0]) {
+          searchType = matches[0]
+        } else {
+          searchType = "";
+        }
+        localStorage.setItem("searchType", searchType)
+        return
+      }
+
       playVideoFunc(url)
     })
     $(".video_search_close").click(() => {
@@ -399,15 +428,13 @@
       $("#why_detail_panel").hide();
     })
     $("#why_detail_btn").click(function () {
-      if (localData2) {
-        $("#why_detail_panel").show();
-        $(".why_mask").show()
-      }
+      toggleDetailPanel();
     })
     $(".why_search_click").click(() => {
       var searchData = $(".why_search_info").val();
+      var searchPage = $(".why_search_pages_info").val();
       showLoading();
-      $.get(`${w_url}/list?searchData=${searchData}`, function (list, status) {
+      $.get(`${w_url}/list?searchData=${searchData}&searchType=${searchType}&searchPage=${searchPage}`, function (list, status) {
         if (status == "success") {
           addSearchItem(JSON.parse(list))
           localStorage.setItem("searchList", list)
@@ -417,6 +444,19 @@
     })
 
   });
+
+
+
+  document.onkeydown = function (event) {
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+    if (e && e.keyCode == 17) { // ctrl
+      //toggleDetailPanel();
+    }
+    return true
+
+  };
+
+
 </script>
 
 <style>
@@ -428,7 +468,7 @@
     padding: 0px;
   }
 
-  .dplayer-box {
+  .video-box {
     width: 100%;
     height: 100%;
     display: flex;
@@ -438,8 +478,15 @@
 
   #dplayer {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     height: auto;
+  }
+
+  #outVideo {
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    max-height: 562px;
   }
 
   .options-box {
@@ -454,7 +501,8 @@
     max-width: 40px;
     width: 10%;
   }
-  span{
+
+  span {
     cursor: pointer;
   }
 
@@ -600,8 +648,18 @@
     border: 1px solid #ccc;
     padding: 7px;
     border-radius: 5px;
-    width: 80%;
+    width: 60%;
     max-width: 270px;
+  }
+
+  .why_search_pages_info {
+    border: 1px solid #ccc;
+    padding: 7px 2px;
+    border-radius: 5px;
+    width: 5%;
+    margin-left: 1%;
+    max-width: 40px;
+    text-align: center;
   }
 
   .why_play_video_url {
@@ -682,15 +740,6 @@
     overflow: hidden;
   }
 
-  .video_item_from {
-    font-size: 14px;
-    border: 2px solid #f18d8dd1;
-    float: right;
-    margin-top: -28px;
-    margin-right: 5px;
-    border-radius: 5px;
-    padding: 1px 4px;
-  }
 
   .vide_item_tip {
     pointer-events: none;
@@ -700,11 +749,15 @@
   }
 
   .vide_item_tip>span {
-    font-size: 14px;
+    font-size: 13px;
     border-radius: 5px;
     border-radius: 5px;
     padding: 1px 4px;
     margin: 2px;
+  }
+
+  .video_item_from {
+    border: 2px solid #ff7474d1;
   }
 
   .video_item_type {
@@ -779,6 +832,10 @@
     max-height: 240px;
     width: 100px !important;
     overflow: auto !important;
+  }
+
+  .dplayer-menu.dplayer-menu-show {
+    display: none !important;
   }
 
 
