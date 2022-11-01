@@ -75,6 +75,11 @@
       </svg>
     </div>
   </div>
+  <div class="video_play_list">
+    <div class="video_play_list_item">
+
+    </div>
+  </div>
   <div id="why_search_panel" style="display: none;">
     <div id="why_box">
       <div id="why_search_box">
@@ -116,9 +121,11 @@
           </div>
           <div style="margin: 6px 0px;">
             <div class="video_detail_tip">
+              <span class="video_detail_from"></span>
               <span class="video_detail_type"></span>
               <span class="video_detail_remark"></span>
               <span class="video_detail_time"></span>
+              <span class="video_add_list">✚</span>
             </div>
             <div class="video_detail_middle">
               <image class="video_detail_Pic" style="width: 50%;max-width: 240px;" />
@@ -171,7 +178,7 @@
   var searchListData = null;
   var detailVideoData = null;
   var localData = null
-  var localData2 = null
+  var localDetailData = null
   var yuanData = [];
   var playVideoList = [];
   var searchType = null;
@@ -180,12 +187,20 @@
   function recovery() {
     searchType = localStorage.getItem("searchType")
     localData = JSON.parse(localStorage.getItem("searchList"))
-    localData2 = JSON.parse(localStorage.getItem("detailVideoData"))
+    localDetailData = JSON.parse(localStorage.getItem("detailVideoData"))
+    try {
+      playVideoList = JSON.parse(localStorage.getItem("playVideoList")) || []
+    } catch (error) {
+      playVideoList = []
+    }
     if (localData) {
       addSearchItem(localData)
     }
-    if (localData2) {
-      clickDetailItem(localData2)
+    if (localDetailData) {
+      clickDetailItem(localDetailData)
+    }
+    if(playVideoList) {
+
     }
   }
 
@@ -247,9 +262,32 @@
       $.get(`${w_url}/detail?vId=${vId}&from=${from}&searchType=${searchType}`, function (list, status) {
         if (status == "success") {
           var rData = JSON.parse(list)
-          clickDetailItem(rData[0])
-          $("#why_detail_panel").show()
-          localStorage.setItem("detailVideoData", JSON.stringify(rData[0]))
+          var rD = rData[0]
+          if (rD) {
+            localDetailData = Object.assign({}, {
+              from: rD.from,
+              type_name: rD.type_name,
+              vod_content: rD.vod_content,
+              vod_down_url: rD.vod_down_url,
+              vod_name: rD.vod_name,
+              vod_play_url: rD.vod_play_url,
+              vod_time: rD.vod_time,
+              vod_remarks: rD.vod_remarks,
+              vod_pic: rD.vod_pic,
+              vod_blurb: rD.vod_blurb,
+              vod_remarks: rD.vod_remarks,
+              play:{
+                time: null,
+                eNum: 0,
+                yNum: 0,
+              }
+            })
+            clickDetailItem(localDetailData)
+            $("#why_detail_panel").show()
+            
+            recoveryPlay();
+            localStorage.setItem("detailVideoData", JSON.stringify(localDetailData))
+          }
         }
         hideLoading();
       });
@@ -260,24 +298,26 @@
     $(".video_yuan_toggle").empty()
     $(".video_yuan_box").empty()
     $(".video_detail_name").text("")
+    $(".video_detail_from").text("")
     $(".video_detail_type").text("")
     $(".video_detail_remark").text("")
     $(".video_detail_time").text("")
     $(".video_detail_content").text("")
     $(".video_detail_Pic").attr('src', "")
-    if (!videoDetailObj) {
+    if (!localDetailData) {
       return
     }
 
-    $(".video_detail_name").text(videoDetailObj.vod_name)
-    $(".video_detail_type").text(videoDetailObj.type_name)
-    $(".video_detail_remark").text(videoDetailObj.vod_remarks)
-    $(".video_detail_time").text(videoDetailObj.vod_time)
-    $(".video_detail_content").text(videoDetailObj.vod_blurb) //video_detail_Pic
-    $(".video_detail_Pic").attr('src', videoDetailObj.vod_pic)
-    var playInfo = videoDetailObj.vod_play_url
-    if (videoDetailObj.vod_down_url && videoDetailObj.vod_down_url.length > 10) {
-      playInfo += "$$$" + videoDetailObj.vod_down_url
+    $(".video_detail_from").text(localDetailData.from)
+    $(".video_detail_name").text(localDetailData.vod_name)
+    $(".video_detail_type").text(localDetailData.type_name)
+    $(".video_detail_remark").text(localDetailData.vod_remarks)
+    $(".video_detail_time").text(localDetailData.vod_time)
+    $(".video_detail_content").text(localDetailData.vod_blurb) //video_detail_Pic
+    $(".video_detail_Pic").attr('src', localDetailData.vod_pic)
+    var playInfo = localDetailData.vod_play_url
+    if (localDetailData.vod_down_url && localDetailData.vod_down_url.length > 10) {
+      playInfo += "$$$" + localDetailData.vod_down_url
     }
     var yuanList = playInfo.split("$$$").filter(x => x && x.length > 10)
 
@@ -295,11 +335,10 @@
         <span class="video_yuan_toggle_item" yuan_index="${i}" yuan_data="${l}">源${i + 1}</span>
       `)
     })
+
     localStorage.setItem("yuanData", JSON.stringify(yuanData))
-    // if(data && data[0]) {
-    //   addVideoYuanItem(data[0])
-    // }
   }
+  
   function addVideoYuanToggleItemClick() {
     $(".video_yuan_toggle_item").click((item) => {
 
@@ -307,12 +346,11 @@
       var yuan_index = $(item.target).attr("yuan_index")
       var yuan_data = (yuanData || JSON.parse(localStorage.getItem("yuanData")))[yuan_index]
       $(".video_yuan_box").empty()
-      addVideoYuanItem(yuan_data)
+      addVideoYuanItem(yuan_data,yuan_index)
     })
   }
 
-
-  function addVideoYuanItem(yuan_data) {
+  function addVideoYuanItem(yuan_data, yuan_index) {
     yuan_data.split("#").forEach((l, i) => {
       if (l && l.length > 10) {
         var name_url = l.split("$")
@@ -320,11 +358,11 @@
         var name = name_url[0]
         if (/\.(m3u8|mp4)$/g.test(url)) {
           $(".video_yuan_box").append(`
-              <span class="video_yuan_item" vUrl="${url}" index="${i}">${name}</span>
+              <span class="video_yuan_item" vUrl="${url}" yIndex="${yuan_index}" index="${i}">${name}</span>
             `)
         } else {
           $(".video_yuan_box").append(`
-              <span class="video_yuan_item addXing" vUrl="${url}" index="${i}">${name}</span>
+              <span class="video_yuan_item addXing" vUrl="${url}" yIndex="${yuan_index} index="${i}">${name}</span>
             `)
         }
       }
@@ -338,21 +376,58 @@
       $(item.target).addClass("video_choose").siblings().removeClass("video_choose");
 
       var index = $(item.target).attr("index")
+      var yIndex = $(item.target).attr("yIndex")
       var vUrl = $(item.target).attr("vUrl")
       var name = $(item.target).text();
       playVideoFunc(vUrl, name)
+      updatePlay(index, yIndex)
       hideAll();
     })
+  }
+
+  function updatePlay(eNum, yNum, time){
+    if(!localDetailData) {
+      return
+    }
+    if(!localDetailData.play) {
+      localDetailData.play = {}
+    }
+    
+    if(eNum) {
+      localDetailData.play.eNum = eNum
+    }
+    if(yNum) {
+      localDetailData.play.yNum = yNum
+    }
+    if(time) {
+      localDetailData.play.time = time
+    }
+    localStorage.setItem("detailVideoData", JSON.stringify(localDetailData))
+  }
+
+  function recoveryPlay (){ 
+    var yIndex = 0;
+    var eIndex = 0;
+    var play = localDetailData.play;
+    if(play && play.yNum) {
+      yIndex = play.yNum
+    }
+    if(play && play.eNum) {
+      eIndex = play.eNum
+    }
+    $(".video_yuan_toggle_item").eq(yIndex).click()
+
+    $(".video_yuan_item").eq(eIndex).addClass("video_choose").siblings().removeClass("video_choose");
   }
 
   function playVideoFunc(url, name) {
     $("#dplayer").remove();
     $("#outVideo").remove();
 
-    
+
     if (!/\.(m3u8|mp4)$/g.test(url)) {
       $(".video-box").append(`<iframe id="outVideo" src="${url}" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>`);
-        return
+      return
     }
 
 
@@ -372,6 +447,11 @@
     initDplayer(initPlayerData);
   }
 
+  function addToPlayVideoList(){
+    playVideoList.push(localDetailData)
+    localStorage.setItem("playVideoList",JSON.stringify(playVideoList))
+  }
+
   function hideAll() {
     $("#why_play_panel").hide()
     $("#why_search_panel").hide()
@@ -383,11 +463,13 @@
 
 
   function toggleDetailPanel() {
-    if (localData2) {
+    if (localDetailData) {
       $("#dplayer").toggle()
       $("#outVideo").toggle()
       $("#why_detail_panel").toggle();
       $(".why_mask").toggle()
+      
+      recoveryPlay();
     }
   }
 
@@ -443,6 +525,9 @@
       });
     })
 
+    $(".video_add_list").click(()=>{
+      addToPlayVideoList();
+    })
   });
 
 
@@ -494,6 +579,16 @@
     top: 40px;
     left: 20px;
     z-index: 100002;
+  }
+
+  .video_play_list {
+    position: absolute;
+    top: 150px;
+    left: 20px;
+    z-index: 100002;
+  }
+
+  .video_play_list_item{
   }
 
   .why_btn {
@@ -561,6 +656,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .video_detail_tip>span {
@@ -571,6 +667,10 @@
     border-radius: 5px;
     padding: 1px 4px;
     margin: 2px;
+  }
+
+  .video_detail_from {
+    border: 2px solid #ff7474d1;
   }
 
   .video_detail_type {
